@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Receiver</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="page-hero card">
+    <div>
+      <p class="eyebrow">RECEIVER</p>
+      <h2>Monitor the channel, decrypt payloads, and download files instantly.</h2>
+      <p class="small">Use the same room/password as the TX page to visualize how noisy bits get healed on arrival.</p>
+    </div>
+    <div class="hero-highlights">
+      <div class="highlight-pill">
+        <span>Scheme</span>
+        <strong id="enc_scheme">-</strong>
+      </div>
+      <div class="highlight-pill">
+        <span>SNR</span>
+        <strong id="enc_snr">SNR: - dB</strong>
+      </div>
+      <div class="highlight-pill">
+        <span>BER</span>
+        <strong id="enc_ber">BER: -</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h3>Connect &amp; sync</h3>
+        <p class="small">Join the room and supply the password for decryption.</p>
+      </div>
+      <span id="status" class="status-pill offline">Disconnected</span>
+    </div>
+    <div class="two-col">
+      <label>Room
+        <input id="room" value="demo101">
+      </label>
+      <label>Password
+        <input id="pwd" type="password" value="secret123">
+      </label>
+    </div>
+    <div class="row flex-between">
+      <button id="join" class="btn small-btn">Connect</button>
+      <div class="badge" id="snr_val">SNR: -</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Incoming feed</h3>
+      <p class="small">Live log of received frames and decrypt attempts.</p>
+    </div>
+    <pre id="log" class="log-pane"></pre>
+    <div id="downloads" class="download-stack"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h3>Encrypted view</h3>
+        <p class="small">Compare clean vs. noisy ciphertext, bits, and constellations.</p>
+      </div>
+      <span id="enc_fec" class="badge">FEC: -</span>
+    </div>
+
+    <div class="data-grid">
+      <div>
+        <div class="small">Raw (AES-GCM)</div>
+        <pre id="enc_raw" class="data-box"></pre>
+      </div>
+      <div>
+        <div class="small">After FEC</div>
+        <pre id="enc_clean" class="data-box"></pre>
+      </div>
+      <div>
+        <div class="small">After Channel</div>
+        <pre id="enc_noisy" class="data-box"></pre>
+      </div>
+    </div>
+
+    <div class="bit-preview">
+      <div>
+        <div class="small">Bits raw</div>
+        <pre id="enc_bits_raw"></pre>
+      </div>
+      <div>
+        <div class="small">Bits clean</div>
+        <pre id="enc_bits_clean"></pre>
+      </div>
+      <div>
+        <div class="small">Bits noisy</div>
+        <pre id="enc_bits_noisy"></pre>
+      </div>
+    </div>
+
+    <div class="viz-grid">
+      <div>
+        <div class="small">Constellation (clean)</div>
+        <canvas id="rx_const_clean" width="320" height="240"></canvas>
+      </div>
+      <div>
+        <div class="small">Constellation (noisy)</div>
+        <canvas id="rx_const_noisy" width="320" height="240"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>window.RX_PAGE = true;</script>
+<script src="/static/main.js"></script>
+</body>
+</html>

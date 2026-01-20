@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Adaptive Comm (Python)</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="glow"></div>
+<div class="container">
+  <section class="hero card float">
+    <h1>Adaptive Digital Communication Sandbox</h1>
+    <p>
+      Explore how encrypted payloads travel through BPSK, QPSK, or 16‑QAM. 
+      Adjust the channel SNR, watch the constellation move, and see how the receiver heals the bits.
+    </p>
+    <div class="cta">
+      <a class="btn pulse" href="/tx">Launch Transmitter</a>
+      <a class="btn secondary" href="/rx">Open Receiver</a>
+    </div>
+  </section>
+
+  <h2 class="section-heading">How it works</h2>
+  <p class="section-sub">Follow the path your data takes from text/file input to decoded output.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">STEP 1</div>
+      <h3>Encrypt &amp; Protect</h3>
+      <p>TX page AES‑GCM encrypts your text or files and wraps the ciphertext with repetition‑3 FEC for resilience.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">STEP 2</div>
+      <h3>Adaptive Modulation</h3>
+      <p>The ML model inspects the channel SNR and switches between BPSK, QPSK, or 16QAM before sending symbols.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">STEP 3</div>
+      <h3>Visualize &amp; Learn</h3>
+      <p>Constellations, I/Q waveforms, and bitstreams animate in real time so you can see noise distortions.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">STEP 4</div>
+      <h3>Receive &amp; Decrypt</h3>
+      <p>The RX page FEC‑decodes, decrypts, and offers downloads while showing channel updates and logs.</p>
+    </div>
+  </div>
+
+  <h2 class="section-heading">Live demo checklist</h2>
+  <p class="section-sub">Use this quick flow in workshops or reports.</p>
+  <div class="card timeline">
+    <div class="timeline-item">
+      <div class="timeline-badge">1</div>
+      <div class="timeline-content">
+        <strong>Join the same room.</strong> Open TX and RX tabs, keep the default password or set your own.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-badge">2</div>
+      <div class="timeline-content">
+        <strong>Drag the noise slider.</strong> Show how the ML model switches constellations as SNR changes.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-badge">3</div>
+      <div class="timeline-content">
+        <strong>Send text or files.</strong> Watch TX previews, then confirm RX decrypts and downloads successfully.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-heading">Why it’s useful</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Education ready</h3>
+      <p>Showcase modulation theory with live plots, bit errors, and ML-driven decisions in a single browser tab.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Security minded</h3>
+      <p>AES-GCM encryption plus password-derived keys illustrate how secure payloads still experience channel noise.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Extendable Python stack</h3>
+      <p>FastAPI + NumPy + scikit-learn keep everything open-source. Swap models, modulation types, or FEC in minutes.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

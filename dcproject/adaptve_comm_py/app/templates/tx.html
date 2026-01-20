@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Transmitter</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="page-hero card">
+    <div>
+      <p class="eyebrow">TRANSMITTER</p>
+      <h2>Launch encrypted payloads and watch the modem adapt in real time.</h2>
+      <p class="small">Join a room, dial the SNR slider, then send text or binary files to visualize every stage.</p>
+    </div>
+    <div class="hero-highlights">
+      <div class="highlight-pill">
+        <span>Scheme</span>
+        <strong id="tx_scheme">-</strong>
+      </div>
+      <div class="highlight-pill">
+        <span>SNR</span>
+        <strong id="tx_snr">SNR: - dB</strong>
+      </div>
+      <div class="highlight-pill">
+        <span>BER</span>
+        <strong id="tx_ber">BER: -</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h3>Connect &amp; calibrate</h3>
+        <p class="small">Join the shared room and define the channel conditions.</p>
+      </div>
+      <span id="status" class="status-pill offline">Disconnected</span>
+    </div>
+    <div class="two-col">
+      <label>Room
+        <input id="room" value="demo101">
+      </label>
+      <label>Password
+        <input id="pwd" type="password" value="secret123">
+      </label>
+    </div>
+    <div class="row flex-between">
+      <button id="join" class="btn small-btn">Connect</button>
+      <div class="slider-block">
+        <label>Noise (SNR dB)</label>
+        <div class="row">
+          <input id="snr" type="range" min="0" max="20" value="8">
+          <span id="snr_val" class="badge">8 dB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Send text</h3>
+      <p class="small">Great for highlighting how modulation flips when SNR changes.</p>
+      <input id="msg" placeholder="Type message...">
+      <button id="send_text" class="btn small-btn">Send text</button>
+    </div>
+    <div class="card">
+      <h3>Send files</h3>
+      <p class="small">Drop one or more files to see how bigger payloads behave.</p>
+      <input id="files" type="file" multiple>
+      <button id="send_files" class="btn small-btn">Send selected</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Transmission log</h3>
+      <p class="small">Live acknowledgements, encryption notes, and SNR updates.</p>
+    </div>
+    <pre id="log" class="log-pane"></pre>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h3>Signal explorer</h3>
+        <p class="small">Inspect ciphertext snapshots, digital bits, and modulation visuals.</p>
+      </div>
+      <span id="tx_fec" class="badge">FEC: -</span>
+    </div>
+
+    <div class="data-grid">
+      <div>
+        <div class="small">Raw (AES-GCM)</div>
+        <pre id="tx_raw" class="data-box"></pre>
+      </div>
+      <div>
+        <div class="small">After FEC</div>
+        <pre id="tx_clean" class="data-box"></pre>
+      </div>
+      <div>
+        <div class="small">After Channel</div>
+        <pre id="tx_noisy" class="data-box"></pre>
+      </div>
+    </div>
+
+    <div class="bit-preview">
+      <div>
+        <div class="small">Bits raw</div>
+        <pre id="tx_bits_raw"></pre>
+      </div>
+      <div>
+        <div class="small">Bits clean</div>
+        <pre id="tx_bits_clean"></pre>
+      </div>
+      <div>
+        <div class="small">Bits noisy</div>
+        <pre id="tx_bits_noisy"></pre>
+      </div>
+    </div>
+
+    <div class="viz-grid">
+      <div>
+        <div class="small">Constellation (clean)</div>
+        <canvas id="tx_const_clean" width="320" height="240"></canvas>
+      </div>
+      <div>
+        <div class="small">Constellation (noisy)</div>
+        <canvas id="tx_const_noisy" width="320" height="240"></canvas>
+      </div>
+      <div>
+        <div class="small">I/Q (clean)</div>
+        <canvas id="tx_wave_clean" width="320" height="140"></canvas>
+      </div>
+      <div>
+        <div class="small">I/Q (noisy)</div>
+        <canvas id="tx_wave_noisy" width="320" height="140"></canvas>
+      </div>
+    </div>
+
+    <div class="small" style="margin-top:10px;">Digital bits (chart)</div>
+    <canvas id="tx_bits_plot" width="660" height="120"></canvas>
+  </div>
+</div>
+
+<script>window.TX_PAGE = true;</script>
+<script src="/static/main.js"></script>
+</body>
+</html>
